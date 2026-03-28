@@ -18,12 +18,12 @@ beforeAll(async () => {
 
 // GET /api/sensors
 describe('GET /api/sensors', () => {
-  it('retourne 401 sans token', async () => {
+  if('retourne 401 sans token', async () => {
     const res = await request(app).get('/api/sensors');
     expect(res.status).toBe(401);
   });
 
-  it('retourne 200 avec token valide', async () => {
+  if('retourne 200 avec token valide', async () => {
     const res = await request(app).get('/api/sensors')
       .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
@@ -34,7 +34,7 @@ describe('GET /api/sensors', () => {
 
 // POST /api/sensors
 describe('POST /api/sensors', () => {
-  it('crée un capteur avec données valides', async () => {
+  if('crée un capteur avec données valides', async () => {
     const res = await request(app).post('/api/sensors')
       .set('Authorization', `Bearer ${authToken}`)
       .send({ name: 'Capteur Test', type: 'temperature', value: 25.5 });
@@ -42,7 +42,7 @@ describe('POST /api/sensors', () => {
     expect(res.body.data.name).toBe('Capteur Test');
   });
 
-  it('retourne 400 avec type invalide', async () => {
+  if('retourne 400 avec type invalide', async () => {
     const res = await request(app).post('/api/sensors')
       .set('Authorization', `Bearer ${authToken}`)
       .send({ name: 'Test', type: 'invalid_type' });
