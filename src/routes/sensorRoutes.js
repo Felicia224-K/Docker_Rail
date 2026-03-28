@@ -6,6 +6,8 @@ const sensorController = require('../controllers/sensorController');
 
 const { withCache, invalidateCache } = require('../middleware/cache');
 
+const {authenticate } = require('../middleware/auth');
+
 
 
 

@@ -3,6 +3,8 @@ const express = require('express');
 const {sequelize} = require('./models');
 const sensorRoutes = require('./routes/sensorRoutes');
 
+const authRoutes = require('./routes/authRoutes');
+
 const {rateLimiter} = require('./middleware/rateLimiter');
 
 
@@ -13,6 +15,8 @@ require('./config/pubsub');
 const app = express();
 
 app.use(express.json());
+
+app.use('/api/auth', authRoutes);
 
 app.use('/api/sensors', sensorRoutes);
 
@@ -38,3 +42,5 @@ sequelize.authenticate()
         );
     })
 .catch(err => console.error('Database connection error:', err));
+
+module.exports = app;
