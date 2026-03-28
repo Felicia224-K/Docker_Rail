@@ -1,10 +1,13 @@
 const Redis = require('ioredis'); 
  
 redis = new Redis({ 
-  host     : process.env.REDIS_HOST , 
+  host     : process.env.REDIS_HOST || 'localhost' , 
   port     : parseInt(process.env.REDIS_PORT) || 6379, 
   password : process.env.REDIS_PASSWORD || undefined, 
-  retryStrategy: (times) => Math.min(times * 100, 3000), 
+  retryStrategy: (times) =>{
+    if (times> 3) return null;
+    return times * 500;
+  } 
 }); 
  
 redis.on('connect', () => console.log('Redis connecte')); 
