@@ -71,7 +71,7 @@ services:
       - cir-network
 
 
-prometheus:
+  prometheus:
     image: prom/prometheus:latest
     container_name: cir-prometheus
     restart: unless-stopped
@@ -82,7 +82,8 @@ prometheus:
     networks:
       - cir-network
 
-grafana:
+
+  grafana:
     image: grafana/grafana:latest
     container_name: cir-grafana
     restart: unless-stopped
@@ -93,7 +94,7 @@ grafana:
     networks:
       - cir-network
 
-      
+
 volumes:
   postgres_data:
   redis_data:
