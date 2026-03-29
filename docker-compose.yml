@@ -1,4 +1,3 @@
-
 services:
 
  
@@ -94,8 +93,7 @@ grafana:
     networks:
       - cir-network
 
-
-
+      
 volumes:
   postgres_data:
   redis_data:
