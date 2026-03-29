@@ -27,9 +27,18 @@ jobs:
         with: { node-version: '20' }
       - run: npm ci
       - run: npm test
-        env:
-          DATABASE_URL: postgres://testuser:testpass@localhost:5432/cir_test
-          JWT_SECRET: test_secret_for_ci
+      
+  env:
+    DATABASE_URL: postgres://testuser:testpass@localhost:5432/cir_test
+    DB_HOST: localhost
+    DB_USER: testuser
+    DB_PASSWORD: testpass
+    DB_NAME: cir_test
+    DB_PORT: 5432
+    JWT_SECRET: test_secret_for_ci
+    REDIS_HOST: localhost
+    REDIS_PORT: 6379
+    NODE_ENV: test
 
   deploy:
     name: Deploiement production
@@ -44,3 +53,5 @@ jobs:
         with:
           railway_token: ${{ secrets.RAILWAY_TOKEN }}
           service: api-iot
+
+          

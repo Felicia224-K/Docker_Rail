@@ -1,4 +1,4 @@
-const app = require('./app');
+const server = require('./websocket');
 const {sequelize} = require('./models');
 
 const PORT = process.env.PORT || 3000;
