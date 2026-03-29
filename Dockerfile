@@ -9,12 +9,12 @@ WORKDIR /app
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder --chown=appuser:appgroup /app/node_modules ./node_modules
 
-COPY src/ ./src/
-COPY package.json ./
 
-RUN chown -R appuser:appgroup /app
+COPY --chown=appuser:appgroup ./src/ ./src/
+COPY --chown=appuser:appgroup package.json ./
+
 USER appuser
 
 EXPOSE 3000

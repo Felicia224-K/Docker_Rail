@@ -9,7 +9,8 @@ const authenticate = (req, res, next) => {
 
   const token = header.split(' ')[1];
   try {
-    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    const secret = process.env.JWT_SECRET || 'default_secret';
+    req.user = jwt.verify(token, secret);
     next();
   } catch (err) {
     return res.status(401).json({ success: false, error: 'Token invalide' });
